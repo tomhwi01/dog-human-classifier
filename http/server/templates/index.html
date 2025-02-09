@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Classifying Image into Dog or Human</title>
+    <style>
+      body {
+        background-color: lightblue;
+      }
+      h1 {
+        color: white;
+        text-align: center;
+      }
+      p {
+        font-family: verdana;
+        font-size: 18px;
+      }
+      ol {
+        font-family: verdana;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Classifying Image into Dog or Human</h1>
+    <hr>
+    <p style="font-size: 20px;">Procedures:</p>
+    <ol>
+      <li>Click "Browse" to select an image to be classified</li>
+      <li>Click "Submit" to submit the image to the system</li>
+      <li>Wait a second for the result below</li>
+    </ol>
+    <form method="POST" action="" enctype="multipart/form-data" onsubmit="document.getElementById('submit').disabled = true; document.getElementById('submit').value = 'Loading...'">
+      <p><input type="file" name="file"></p>
+      <p><input type="submit" id="submit" value="Submit"></p>
+    </form>
+    <hr>
+    {% if session.get('filename') %}
+    <p style="font-size: 20px;">Result:</p>
+      <img src="{{ url_for('upload', filename=session.get('filename')) }}" style="width: 224px; border: 1px solid white;">
+      {% for line in session.get('result').split('\n') %}
+        <p>{{ line }}</p>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

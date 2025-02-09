@@ -1,0 +1,2 @@
+ID: 0, Label: dogs 100.0%
+ID: 1, Label: humans 0.0%
